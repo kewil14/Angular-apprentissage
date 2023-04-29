@@ -1,52 +1,73 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { IHotel } from './hotel';
+import { HotelListService } from './hotel-list.service';
 @Component({
   selector: 'app-hotel-list',
   templateUrl: './hotel-list.component.html',
   styleUrls: ['./hotel-list.component.scss']
 })
-export class HotelListComponent {
+export class  HotelListComponent implements OnInit {
   public title ='liste hotels';
   public getdate():Date{
     return new Date();
   }
-  public hotels:any[]=[
-    {
-      hotelId:1,
-      hotelName:'Buea sweet life',
-      desciption:'belle vue au bord de la mer',
-      price:230.5,
-      imageUrl:"assets/img/hotel-room.jpg",
-    },
-    {
-      hotelId:2,
-      hotelName:'Marakech',
-      desciption:'profitez de la vue du desert marocain',
-      price:145.5,
-      imageUrl:"assets/img/the-interior.jpg",
-    },
-    {
-      hotelId:3,
-      hotelName:'libreville hotel',
-      desciption:"liberte d'habitation",
-      price:250.5,
-      imageUrl:"assets/img/window.jpg",
-    },
-    {
-      hotelId:4,
-      hotelName:'Cap town city',
-      desciption:'le sud ',
-      price:300.5,
-      imageUrl:"assets/img/indoors.jpg",
-    }
+  public hotels:IHotel[]=[
+
   ];
 
   public showBadge!: boolean;
 
-  public hotelFilter!:string;
+  private _hotelFilter!:string;
+
+  //implementons ici les getteur et les setteurs
+  public filteredHotels:IHotel[] = [];
+
+  //
+  public receivedRating!: string ;
+  //errmsge
+  public errMsg!:string;
+
+
+  constructor(private hotelListService:HotelListService){
+
+  }
+  //definition de la methode OnINit
+  ngOnInit() {
+    //passons dans l'initialiseur la valeur des hotels
+    this.hotelListService.getHotels().subscribe({
+      next: hotels=> {
+        this.hotels=hotels;
+        this.filteredHotels= this.hotels;
+      },
+      error: err=>this.errMsg=err
+    });
+
+    this.hotelFilter="";
+
+  }
 
   public toggleIsNewBadge():void{
     this.showBadge=!this.showBadge;
   }
+  public get hotelFilter():string {
+    return this._hotelFilter;
+  }
+  public set hotelFilter(filter:string){
+     this._hotelFilter=filter;
 
+     this.filteredHotels=this.hotelFilter ? this.filterHotel(this.hotelFilter) :  this.hotels;
+  }
+
+  public receiveRatingClicked(message:string) : void {
+this.receivedRating = message;
+  }
+
+  private filterHotel(criteria:string):IHotel[] {
+    criteria = criteria.toLocaleLowerCase();
+
+    const res = this.hotels.filter(
+      (hotel:IHotel) => hotel.hotelName.toLocaleLowerCase().indexOf(criteria) != -1
+    );
+    return res;
+  }
 }

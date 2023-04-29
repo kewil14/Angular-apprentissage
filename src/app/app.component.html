@@ -1,7 +1,30 @@
-<div class="container mb-5 mt-5">
-<h1>{{titre}}</h1>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" routerLink="">{{titre}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link"  routerLink="/home">Accueil</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link"  routerLink="/hotels">Liste des hotels</a>
+        </li>
+
+      </ul>
+
+    </div>
+    <ul class="navbar-nav ms-auto">
+
+    </ul>
+  </div>
+
+</nav>
+
+<div class="mt-5">
+  <router-outlet></router-outlet>
 </div>
 
 
-
-<app-hotel-list></app-hotel-list>

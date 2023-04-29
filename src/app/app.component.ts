@@ -9,7 +9,7 @@ import { Component } from "@angular/core";
 })
 export class AppComponent{
 
- public titre="Gestionnaire hotels";
+ public titre="Hotels room";
 
 
 }

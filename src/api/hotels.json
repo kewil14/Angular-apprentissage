@@ -1,1 +1,36 @@
+[
+
+  {
+    "hotelId":1,
+    "hotelName":"Buea sweet life",
+    "desciption":"belle vue au bord de la mer",
+    "price":230.5,
+    "imageUrl":"assets/img/hotel-room.jpg",
+    "rating":3.5
+  },
+  {
+    "hotelId":2,
+    "hotelName":"Marakech",
+    "desciption":"profitez de la vue du desert marocain",
+    "price":145.5,
+    "imageUrl":"assets/img/the-interior.jpg",
+    "rating":5
+  },
+  {
+    "hotelId":3,
+    "hotelName":"libreville hotel",
+    "desciption":"liberte d'habitation",
+    "price":250.5,
+    "imageUrl":"assets/img/window.jpg",
+    "rating":4
+  },
+  {
+    "hotelId":4,
+    "hotelName":"Cap town city",
+    "desciption":"le sud",
+    "price":300.5,
+    "imageUrl":"assets/img/indoors.jpg",
+    "rating":2.5
+  }
+]
 
